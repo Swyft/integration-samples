@@ -23,7 +23,7 @@ Swyft Mobile can import attachments through App Kinetics that are in a 'vcard' f
 NSData   *fileData            = [vcardNSString dataUsingEncoding:NSUTF8StringEncoding];
 NSArray  *paths               = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask ,YES );
 NSString *documentsDirectory  = [paths objectAtIndex:0];
-NSString *fileName            = [[[NSProcessInfo processInfo] globallyUniqueString] stringByAppendingPathExtension:@"vcd"];
+NSString *fileName            = [[[NSProcessInfo processInfo] globallyUniqueString] stringByAppendingPathExtension:@"vcf"];
 NSString *documentPathForFile = [documentsDirectory stringByAppendingPathComponent:fileName];
 [[GDFileManager defaultManager] createFileAtPath:documentPathForFile contents:fileData attributes:nil];
 
