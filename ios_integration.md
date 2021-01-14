@@ -72,7 +72,7 @@ NSString* const kImportFileMethod    = @"importFile";
                        withParams:params
                   withAttachments:attchments
               bringServiceToFront:GDEPreferPeerInForeground
-                        requestID:nil/*&requestID*/
+                        requestID:nil
                             error:error];
 ```
 
@@ -80,7 +80,14 @@ There is no need to implement the GDServiceClientDelegate because Swyft Mobile d
 
 ## Import Document
 
-Swyft Mobile can import document attachments through App Kinetics. App Kinetics requires that files are referenced from the dynamics file system. The example provided below shows how to create a file reference to a text file in your application.
+Swyft Mobile can import document attachments through App Kinetics. App Kinetics requires that files are referenced from the dynamics file system. 
+
+This service requires two parameters;
+
+* Filename
+* Mimetype
+
+The example provided below shows how to create a file reference to a text file in your application.
 
 ```Objective-C
 // In this example we take text from an String, and save it to the file system using the GDFileManager.
@@ -128,7 +135,10 @@ To send the document to Swyft Mobile once you have your document and service, ca
 NSError *error                       = nil;
 NSArray           *attachments       = [NSArray arrayWithObject:documentPathForFile];
 GDServiceProvider *serviceProvider   = [arrayGDServiceProvider objectAtIndex:0];
-NSDictionary *params                 = @{ @"Filename": @"sampletext.txt", @"Mimetype": @"text/plain" };
+NSDictionary *params                 = @{ 
+    @"Filename": @"sampletext.txt", 
+    @"Mimetype": @"text/plain" 
+};
 NSString* const kImportFileMethod    = @"importFile";
 
 [GDServiceClient sendTo:serviceProvider.identifier
@@ -138,7 +148,7 @@ NSString* const kImportFileMethod    = @"importFile";
                        withParams:params
                   withAttachments:attchments
               bringServiceToFront:GDEPreferPeerInForeground
-                        requestID:nil/*&requestID*/
+                        requestID:nil
                             error:error];
 ```
 
@@ -146,7 +156,12 @@ There is no need to implement the GDServiceClientDelegate because Swyft Mobile d
 
 ## Import Note
 
-Swyft Mobile can import notes through App Kinetics. App Kinetics requires that files are referenced from the dynamics file system.
+Swyft Mobile can import notes through App Kinetics. App Kinetics requires that files are referenced from the dynamics file system. 
+
+This service require the following two parameters;
+
+* Title
+* Body
 
 Your application will need to query BlackBerry Dynamics for a matching service. Use the following example to get an array of services using the following constants;
 
@@ -192,7 +207,7 @@ NSString* const kImportFileMethod    = @"importFile";
                        withParams:params
                   withAttachments:nil
               bringServiceToFront:GDEPreferPeerInForeground
-                        requestID:nil/*&requestID*/
+                        requestID:nil
                             error:error];
 ```
 
